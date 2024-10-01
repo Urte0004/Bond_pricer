@@ -24,14 +24,15 @@ def calc_price(freq, tenor, face, coupon_rate, spread):
     total_flow_value += face/((1+yld)**tenor)
    
     return total_flow_value
-def zero_spread_comp(freq,tenor,face,coupon_rate):
-    pass
+
 def error_term(spread, freq, tenor, face, coupon_rate, price):
     return (price-calc_price(freq, tenor, face, coupon_rate, spread))**2
-print(calc_price(2,10,100,10,0))
+
+#an example
 
 x0 = [0]
 p0 = (2,10,100,10,102)
+
 min_obj = minimize(error_term, x0, args=p0,method='SLSQP')
 print(min_obj.x, min_obj.message, min_obj.success)
 print(calc_price(1,10,1000,10,0))
